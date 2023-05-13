@@ -1,40 +1,31 @@
-// 引入element样式文件
+import { App } from 'vue'
 import 'element-plus/dist/index.css'
-
-// 按需引入element组件
 import {
   ElButton,
+  ElCheckbox,
   ElForm,
-  ElMessage,
-  ElScrollbar,
+  ElFormItem,
   ElInput,
-  ElDropdown,
-  ElSelect,
-  ElTable,
-  ElMenu,
-  ElBreadcrumb,
-  ElIcon,
-  ElAvatar
+  ElLink,
+  ElRadio,
+  ElTabPane,
+  ElTabs
 } from 'element-plus'
 
-// 按需引入elelment图标
-import { Edit, Tools, Location, Setting } from '@element-plus/icons-vue'
+const components = [
+  ElButton,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElRadio,
+  ElTabs,
+  ElTabPane,
+  ElCheckbox,
+  ElLink
+]
 
-export default function (app: any) {
-  app.use(ElButton)
-  app.use(ElForm)
-  app.use(ElScrollbar)
-  app.use(ElInput)
-  app.use(ElDropdown)
-  app.use(ElSelect)
-  app.use(ElTable)
-  app.use(ElMenu)
-  app.use(ElBreadcrumb)
-  app.use(ElIcon)
-  app.use(ElAvatar)
-  app.use(ElMessage)
-  app.component('Edit', Edit)
-  app.component('Tools', Tools)
-  app.component('Location', Location)
-  app.component('Setting', Setting)
+export default function (app: App): void {
+  for (const component of components) {
+    app.component(component.name, component)
+  }
 }
