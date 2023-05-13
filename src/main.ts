@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import installElement from './element'
-// import hyRequest from './service'
+import hyRequest from './service'
 
 // hyRequest.request({
 //   url: '/home/multidata',
