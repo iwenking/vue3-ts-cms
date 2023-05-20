@@ -7,11 +7,7 @@ import installElement from './element'
 import hyRequest from './service'
 import 'normalize.css'
 import './assets/css/index.css'
-
-// hyRequest.request({
-//   url: '/home/multidata',
-//   method: 'GET'
-// })
+import { setupStore } from './store/index'
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -20,5 +16,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 installElement(app)
 app.use(router)
 app.use(store)
+setupStore()
 app.mount('#app')
-// createApp(App).use(store).use(router).mount('#app')
