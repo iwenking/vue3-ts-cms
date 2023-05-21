@@ -1,7 +1,7 @@
 export interface IloginSate {
   token: string
   userInfo: any
-  UserMenus: any
+  userMenus: any
 }
 
 export interface IloginResult {
