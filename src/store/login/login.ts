@@ -3,6 +3,7 @@ import { IloginSate } from './type'
 import { IRootState } from '../type'
 import LocalCache from '@/utils/cache'
 import router from '@/router'
+import { removeIconPrefix } from '@/utils/tools/index'
 import {
   accountLoginRequest,
   requestUserInfoById,
@@ -44,7 +45,7 @@ const loginModule: Module<IloginSate, IRootState> = {
       LocalCache.setCache('userInfo', userInfo)
       //3、请求用户菜单
       const UserMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
-      const UserMenus = UserMenusResult.data
+      const UserMenus = removeIconPrefix(UserMenusResult.data)
       commit('changeUserMenus', UserMenus)
       LocalCache.setCache('UserMenus', UserMenus)
       //4、跳到首页

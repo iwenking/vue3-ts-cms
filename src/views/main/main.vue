@@ -19,15 +19,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import NavMenu from '@/components/nav-menu'
+import NavHeader from '@/components/nav-header'
 
 export default defineComponent({
   components: {
-    NavMenu
+    NavMenu,
+    NavHeader
   },
   setup() {
-    return {}
+    const isCollapse = ref(false)
+    const handleFoldChange = (isFold: boolean) => {
+      isCollapse.value = isFold
+    }
+    return {
+      isCollapse,
+      handleFoldChange
+    }
   }
 })
 </script>
