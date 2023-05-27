@@ -15,6 +15,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/main',
     name: 'main',
     component: () => import('@/views/main/main.vue')
+    // children: []
+  },
+  {
+    path: '/:pathMtch(.*)*',
+    name: 'not-found',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 
@@ -22,6 +28,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+//导航守卫
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     const token = LocalCache.getCache('token')
