@@ -10,7 +10,9 @@
         </el-header>
         <el-main class="page-content">
           <div class="page-info">
-            <router-view></router-view>
+            <div class="page-info">
+              <router-view></router-view>
+            </div>
           </div>
         </el-main>
       </el-container>
