@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import LocalCache from '@/utils/cache'
-import { mapMenusToRoutes } from '@/utils/map-menu'
+import { mapMenusToRoutes, firstMenu } from '@/utils/map-menu'
 import store from '@/store'
 
 const routes: Array<RouteRecordRaw> = [
@@ -38,13 +38,15 @@ router.beforeEach((to) => {
       return '/login'
     }
   }
-  const userMenus = (store.state as any).login.userMenus
-  //UserMenus =>routes
-  const routes = mapMenusToRoutes(userMenus)
-  //将routes=>router.main.children
-  routes.map((route) => {
-    router.addRoute('main', route)
-  })
+  if (to.path === '/main') {
+    return firstMenu.url
+  }
+
+  // if (to.path.indexOf('/main') !== -1) {
+  //   if (to.name === 'not-found') {
+  //     to.name = 'user'
+  //   }
+  // }
 })
 
 export default router

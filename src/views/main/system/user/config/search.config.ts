@@ -10,18 +10,28 @@ export const searchFromConfig: IForm = {
   },
   formItems: [
     {
+      field: 'id',
+      type: 'input',
+      label: 'id',
+      rules: [],
+      placeholder: '请输入id'
+    },
+    {
+      field: 'name',
       type: 'input',
       label: '用户名',
       rules: [],
       placeholder: '请输入用户名'
     },
     {
+      field: 'password',
       type: 'password',
       label: '密码',
       rules: [],
       placeholder: '请输入密码'
     },
     {
+      field: 'sport',
       type: 'select',
       label: '喜欢的运动',
       rules: [],
@@ -38,6 +48,7 @@ export const searchFromConfig: IForm = {
       ]
     },
     {
+      field: 'createTime',
       type: 'datepicker',
       label: '时间',
       rules: [],
