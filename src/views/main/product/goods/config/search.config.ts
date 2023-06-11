@@ -10,37 +10,16 @@ export const searchFromConfig: IForm = {
   },
   formItems: [
     {
-      field: 'id',
-      type: 'input',
-      label: 'id',
-      rules: [],
-      placeholder: '请输入id'
-    },
-    {
       field: 'name',
       type: 'input',
-      label: '用户名',
+      label: '商品姓名',
       rules: [],
-      placeholder: '请输入用户名'
+      placeholder: '请输入商品姓名'
     },
     {
-      field: 'realname',
-      type: 'input',
-      label: '真实姓名',
-      rules: [],
-      placeholder: '请输入真实姓名'
-    },
-    {
-      field: 'cellphone',
-      type: 'input',
-      label: '电话号码',
-      rules: [],
-      placeholder: '请输入电话号码'
-    },
-    {
-      field: 'enable',
+      field: 'status',
       type: 'select',
-      label: '用户状态',
+      label: '商品状态',
       rules: [],
       placeholder: '请选择用户状态',
       options: [

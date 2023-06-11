@@ -2,6 +2,7 @@ export interface IloginSate {
   token: string
   userInfo: any
   userMenus: any
+  permissions: string[]
 }
 
 export interface IloginResult {

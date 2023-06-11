@@ -6,13 +6,13 @@
       </template>
       <template #fotter>
         <div class="handle-btns">
-          <el-button type="primary">
+          <el-button type="primary" @click="handleResetClick">
             <el-icon>
               <Refresh />
             </el-icon>
             重置</el-button
           >
-          <el-button type="primary">
+          <el-button type="primary" @click="handleQueryClick">
             <el-icon> <Search /> </el-icon>搜索</el-button
           >
         </div>
@@ -34,16 +34,29 @@ export default defineComponent({
   components: {
     HyForm
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
+    const fromItems = props.searchFromConfig?.formItems ?? []
+
+    const fromOriginData: any = {}
+    for (const item of fromItems) {
+      fromOriginData[item.field] = ''
+    }
+    const formData = ref(fromOriginData)
+
+    const handleResetClick = () => {
+      for (const key in fromOriginData) {
+        formData.value[`${key}`] = fromOriginData[key]
+      }
+      emit('resetBtnClick')
+    }
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
+    }
     return {
-      formData
+      formData,
+      handleResetClick,
+      handleQueryClick
     }
   }
 })

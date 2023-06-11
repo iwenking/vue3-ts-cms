@@ -13,13 +13,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 //窗口缩小的时候报错的问题
-// window.ResizeObserver = class _NewResizeObserver extends ResizeObserver {
-//   constructor(callback: any) {
-//     super(() =>
-//       window.requestAnimationFrame(() => callback.apply(this, arguments))
-//     )
-//   }
-// }
+window.ResizeObserver = class _NewResizeObserver extends ResizeObserver {
+  constructor(callback: any) {
+    super(() =>
+      window.requestAnimationFrame(() => callback.apply(this, arguments))
+    )
+  }
+}
 app.use(globalRegister)
 app.use(store)
 setupStore()
