@@ -8,6 +8,7 @@ export interface IFormItem {
   placeholder?: any
   options?: any[]
   OtherOption?: any
+  isHidden?: boolean
 }
 
 export interface IForm {

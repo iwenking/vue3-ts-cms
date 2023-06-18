@@ -8,7 +8,11 @@
     >
       <!-- 1.header中的插槽 -->
       <template #headerHandler>
-        <el-button v-if="isCreate" type="primary" sizt="small"
+        <el-button
+          v-if="isCreate"
+          type="primary"
+          sizt="small"
+          @click="handleNewClick"
           >新建用户</el-button
         >
         <el-button>
@@ -17,29 +21,33 @@
         </el-button>
       </template>
       <!-- 2.列中的操作 -->
-      <!-- <template #status="scope">
-        <el-button
-          plain
-          :type="scope.row.enable ? 'success' : 'danger'"
-          size="small"
-          >{{ scope.row.enable ? '启用' : '禁用' }}</el-button
-        >
-      </template> -->
       <template #createAt="scope">
         <span>{{ $filters.formaTime(scope.row.createAt) }}</span>
       </template>
       <template #updateAt="scope">
         <span>{{ $filters.formaTime(scope.row.updateAt) }}</span>
       </template>
-      <template #handle>
+      <template #handle="scope">
         <div class="handle-btns">
-          <el-button size="small" text type="primary" v-if="isUpdate">
+          <el-button
+            size="small"
+            text
+            type="primary"
+            v-if="isUpdate"
+            @click="handleEditClick(scope.row)"
+          >
             <el-icon>
               <Edit />
             </el-icon>
             编辑</el-button
           >
-          <el-button size="small" text type="primary" v-if="isDelete">
+          <el-button
+            size="small"
+            text
+            type="primary"
+            v-if="isDelete"
+            @click="handleDeleteClick(scope.row)"
+          >
             <el-icon>
               <Delete />
             </el-icon>
@@ -82,8 +90,8 @@ export default defineComponent({
       require: true
     }
   },
-
-  setup(props) {
+  emits: ['newBtnClick', 'editBtnClick'],
+  setup(props, { emit }) {
     const store = useStore()
     //0、获取操作权限
     const isCreate = usePermission(props.pageName ?? '', 'create')
@@ -92,7 +100,7 @@ export default defineComponent({
     const isQuery = usePermission(props.pageName ?? '', 'query')
 
     //1、双向绑定的pageInfo
-    const pageInfo = ref({ currentPage: 0, pageSize: 10 })
+    const pageInfo = ref({ currentPage: 1, pageSize: 10 })
 
     watch(pageInfo, () => getPageData())
     //2、发送网络请求
@@ -102,7 +110,7 @@ export default defineComponent({
       store.dispatch('system/getPageListAction', {
         pageName: props.pageName,
         queryinfo: {
-          offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+          offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
           size: pageInfo.value.pageSize,
           ...queryinfo
         }
@@ -126,6 +134,19 @@ export default defineComponent({
         return true
       }
     )
+    //5、删除/编辑/新建操作
+    const handleDeleteClick = (item: any) => {
+      store.dispatch('system/deletePageDataAction', {
+        pageName: props.pageName,
+        id: item.id
+      })
+    }
+    const handleNewClick = () => {
+      emit('newBtnClick')
+    }
+    const handleEditClick = (item: any) => {
+      emit('editBtnClick', item)
+    }
     return {
       dataList,
       dataCount,
@@ -134,7 +155,10 @@ export default defineComponent({
       isCreate,
       isUpdate,
       isDelete,
-      getPageData
+      getPageData,
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick
     }
   }
 })
