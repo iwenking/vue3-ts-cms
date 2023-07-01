@@ -1,6 +1,13 @@
 <template>
   <div class="dashboard">
     <el-row :gutter="10">
+      <template v-for="item in topPanelData" :key="item.title">
+        <el-col :md="12" :lg="6" :xl="6">
+          <statistical-panel :panelData="item" />
+        </el-col>
+      </template>
+    </el-row>
+    <el-row :gutter="10">
       <el-col :span="7">
         <hy-card title="分类商品数量(饼图)">
           <pie-echart :pieData="categoryGoodsCount"></pie-echart>
@@ -34,10 +41,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, onMounted } from 'vue'
 import { useStore } from '@/store'
 
 import HyCard from '@/base-ui/card'
+import StatisticalPanel from '@/components/statistical-panel'
 import {
   pieEchart,
   roseEchart,
@@ -50,6 +58,7 @@ export default defineComponent({
   name: 'dashboard',
   components: {
     HyCard,
+    StatisticalPanel,
     pieEchart,
     roseEchart,
     LineEchart,
@@ -59,6 +68,8 @@ export default defineComponent({
   setup() {
     const store = useStore()
     store.dispatch('dashboard/getDashboardDataAction')
+
+    const topPanelData = computed(() => store.state.dashboard.topPanelDatas)
     const categoryGoodsCount = computed(() => {
       return store.state.dashboard.categoryGoodsCount.map((item: any) => {
         return { name: item.name, value: item.goodsCount }
@@ -97,6 +108,7 @@ export default defineComponent({
       })
     })
     return {
+      topPanelData,
       categoryGoodsCount,
       categoryGoodsSale,
       categoryGoodsFavor,

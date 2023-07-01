@@ -44,6 +44,7 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     LineEchart: typeof import('./src/components/page-echarts/src/line-echart.vue')['default']
     MapEcharts: typeof import('./src/components/page-echarts/src/map-echarts.vue')['default']
@@ -56,6 +57,7 @@ declare module '@vue/runtime-core' {
     RoseEchart: typeof import('./src/components/page-echarts/src/rose-echart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StatisticalPanel: typeof import('./src/components/statistical-panel/src/statistical-panel.vue')['default']
     UserInfo: typeof import('./src/components/nav-header/src/user-info.vue')['default']
   }
 }

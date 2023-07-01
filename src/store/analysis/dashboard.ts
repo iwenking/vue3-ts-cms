@@ -1,6 +1,7 @@
 import { Module } from 'vuex'
 
 import {
+  getAmountList,
   getCategoryGoodsCount,
   getCategoryGoodsFavor,
   getCategoryGoodsSale,
@@ -13,6 +14,7 @@ const dashboardMoudle: Module<IDashboardState, IRootState> = {
   namespaced: true,
   state() {
     return {
+      topPanelDatas: [],
       categoryGoodsCount: [],
       categoryGoodsSale: [],
       categoryGoodsFavor: [],
@@ -20,6 +22,9 @@ const dashboardMoudle: Module<IDashboardState, IRootState> = {
     }
   },
   mutations: {
+    changeTopPanelDatas(state, list) {
+      state.topPanelDatas = list
+    },
     changeCategoryCount(state, list) {
       state.categoryGoodsCount = list
     },
@@ -35,6 +40,9 @@ const dashboardMoudle: Module<IDashboardState, IRootState> = {
   },
   actions: {
     async getDashboardDataAction({ commit }) {
+      const resultTopPanelDatas = await getAmountList()
+      commit('changeTopPanelDatas', resultTopPanelDatas.data)
+
       const categoryCountResult = await getCategoryGoodsCount()
       commit('changeCategoryCount', categoryCountResult.data)
 

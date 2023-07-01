@@ -2,7 +2,7 @@
   <div class="page.search">
     <hy-form v-bind="searchFromConfig" v-model="formData">
       <template #header>
-        <h1 class="header">高级检索</h1>
+        <!-- <h1 class="header">高级检索</h1> -->
       </template>
       <template #fotter>
         <div class="handle-btns">

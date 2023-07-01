@@ -10,6 +10,7 @@ export interface IRootWithModule {
   login: IloginSate
   system: ISystemState
   dashboard: IDashboardState
+  analysis: IDashboardState
 }
 
 export type IStoreType = IRootState & IRootWithModule
