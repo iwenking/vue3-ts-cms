@@ -16,7 +16,7 @@
           >新建用户</el-button
         >
         <el-button>
-          <el-icon><Refresh /></el-icon>
+          <el-icon><icon-ep-Refresh /></el-icon>
           刷新
         </el-button>
       </template>
@@ -37,7 +37,7 @@
             @click="handleEditClick(scope.row)"
           >
             <el-icon>
-              <Edit />
+              <icon-ep-Edit />
             </el-icon>
             编辑</el-button
           >
@@ -49,7 +49,7 @@
             @click="handleDeleteClick(scope.row)"
           >
             <el-icon>
-              <Delete />
+              <icon-ep-Delete />
             </el-icon>
             删除</el-button
           >

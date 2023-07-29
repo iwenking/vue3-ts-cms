@@ -61,6 +61,7 @@ const loginModule: Module<IloginSate, IRootState> = {
       //3、请求用户菜单
       const UserMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
       const UserMenus = removeIconPrefix(UserMenusResult.data)
+
       commit('changeUserMenus', UserMenus)
       LocalCache.setCache('UserMenus', UserMenus)
       //4、跳到首页

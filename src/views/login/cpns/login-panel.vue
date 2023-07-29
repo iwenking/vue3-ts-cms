@@ -5,7 +5,7 @@
       <el-tab-pane name="account">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><Avatar /></el-icon>
+            <el-icon><icon-ep-Avatar /></el-icon>
             <span>账户登录</span>
           </span>
         </template>
@@ -14,7 +14,7 @@
       <el-tab-pane name="phone">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><Iphone /></el-icon>
+            <el-icon><icon-ep-Iphone /></el-icon>
             <span>手机登录</span>
           </span>
         </template>

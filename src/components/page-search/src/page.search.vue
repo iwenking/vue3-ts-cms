@@ -8,12 +8,12 @@
         <div class="handle-btns">
           <el-button type="primary" @click="handleResetClick">
             <el-icon>
-              <Refresh />
+              <icon-ep-Refresh />
             </el-icon>
             重置</el-button
           >
           <el-button type="primary" @click="handleQueryClick">
-            <el-icon> <Search /> </el-icon>搜索</el-button
+            <el-icon> <icon-ep-Search /> </el-icon>搜索</el-button
           >
         </div>
       </template>
